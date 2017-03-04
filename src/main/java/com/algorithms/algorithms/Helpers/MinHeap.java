@@ -1,10 +1,6 @@
-package com.algorithms.algorithms;
-
-import com.algorithms.graph.Edge;
-import com.algorithms.graph.Node;
+package com.algorithms.algorithms.Helpers;
 
 import java.util.HashMap;
-import java.util.HashSet;
 
 /**
  * Created by Ayomitunde on 2/19/2017.
