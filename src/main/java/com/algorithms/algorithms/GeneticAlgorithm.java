@@ -1,6 +1,7 @@
 package com.algorithms.algorithms;
 
 import com.algorithms.algorithms.Helpers.Population;
+import com.algorithms.graph.Edge;
 import com.algorithms.graph.Node;
 
 import java.lang.reflect.Array;
@@ -13,15 +14,18 @@ import java.util.*;
 class GeneticAlgorithm {
 
     private HashSet<Node> allNodes;
-    GeneticAlgorithm(HashSet<Node> allNodes)
+    private HashMap<Integer, Edge> allEdges;
+    GeneticAlgorithm(HashSet<Node> allNodes, HashMap<Integer, Edge> allEdges)
     {
         this.allNodes = allNodes;
+        this.allEdges = allEdges;
     }
 
     void run(Node source)
     {
-        Population population = new Population(allNodes, source);
-        HashMap<Integer, ArrayList<Node>> populationGroup = population.createPopulationGroup(10);
+        Population population = new Population(allNodes, allEdges, source);
+        population.createPopulationGroup(10);
+        HashMap<Integer, ArrayList<Node>> populationGroup = population.getPopulationGroups();
         for(int key : populationGroup.keySet())
         {
             System.out.println("SET");

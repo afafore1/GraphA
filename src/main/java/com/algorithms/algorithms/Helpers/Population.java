@@ -1,6 +1,8 @@
 package com.algorithms.algorithms.Helpers;
 
+import com.algorithms.graph.Edge;
 import com.algorithms.graph.Node;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
 import java.util.*;
 
@@ -14,36 +16,72 @@ import java.util.*;
  */
 public class Population {
     private HashSet<Node> allNodes;
+    private HashMap<Integer, Edge> allEdges;
     private Node source;
-    public Population(HashSet<Node> allNodes, Node source)
+    private HashMap<Integer, ArrayList<Node>> populationGroups;
+    private HashMap<Integer, ArrayList<Node>> fittestGroups;
+    public Population(HashSet<Node> allNodes, HashMap<Integer, Edge> allEdges, Node source)
     {
         this.allNodes = allNodes;
+        this.allEdges = allEdges;
         allNodes.remove(source);
         this.source = source;
+        populationGroups = new HashMap<>();
+        fittestGroups = new HashMap<>();
     }
 
     /*
     Create different groups of populations using the same set of nodes we have
      */
-    public HashMap<Integer, ArrayList<Node>> createPopulationGroup(int size)
+    public void createPopulationGroup(int size)
     {
-        HashMap<Integer, ArrayList<Node>> populationGroup = new HashMap<>();
         for(int i = 0; i < size; i++)
         {
             ArrayList<Node> nodeArrayList = new ArrayList<>(allNodes);
             Collections.shuffle(nodeArrayList);
             nodeArrayList.add(0, source);
             nodeArrayList.add(nodeArrayList.size(), source);
-            populationGroup.put(i, nodeArrayList);
+            populationGroups.put(i, nodeArrayList);
         }
-        return populationGroup;
     }
 
-    public HashSet<Node> getFittest()
+    private void getFittest()
     {
-        HashSet<Node> fittest = new HashSet<>();
-        return fittest;
+        for(Integer key : populationGroups.keySet())
+        {
+            if(!fittestGroups.containsKey(key))
+            {
+                ArrayList<Node> group = populationGroups.get(key);
+                double rank = rankGroup(group);
+            }
+        }
 
     }
 
+    private double rankGroup(ArrayList<Node> group)
+    {
+        double rank = 0.0;
+        for(Node node : group)
+        {
+            List<Object> neighbors =  node.getNeighbors();
+            for(Object object : neighbors)
+            {
+                Node neighbor = (Node) object;
+                int hashCode = new HashCodeBuilder().append(node).append(neighbor).toHashCode();
+                double weight = allEdges.get(hashCode).getWeight();
+                rank+= weight;
+            }
+        }
+        return rank;
+    }
+
+    public HashMap<Integer, ArrayList<Node>> getFittestGroups()
+    {
+        return fittestGroups;
+    }
+
+    public HashMap<Integer, ArrayList<Node>> getPopulationGroups()
+    {
+        return populationGroups;
+    }
 }

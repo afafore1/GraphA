@@ -152,7 +152,7 @@ public class Edge {
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(source).append(destination).append(weight).append(isSettled).toHashCode();
+        return new HashCodeBuilder().append(source).append(destination).toHashCode();
     }
 
     @Override

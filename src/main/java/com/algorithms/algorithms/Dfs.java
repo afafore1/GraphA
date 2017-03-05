@@ -25,7 +25,7 @@ public class Dfs {
         {
             Node current = nodeStack.peek();
             List<Node> currentsNeighbors = (List<Node>)(Object) current.getNeighbors();
-            if(currentsNeighbors.isEmpty() || areAllNeighborsVisted(current))
+            if(currentsNeighbors.isEmpty() || areAllNeighborsVisited(current))
             {
                 nodeStack.pop();
                 continue;
@@ -43,7 +43,7 @@ public class Dfs {
         }
     }
 
-    private boolean areAllNeighborsVisted(Node node)
+    private boolean areAllNeighborsVisited(Node node)
     {
         List<Node> currentsNeighbors = (List<Node>)(Object) node.getNeighbors();
         for(Node n : currentsNeighbors)
