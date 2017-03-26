@@ -13,7 +13,7 @@ import java.util.HashMap;
  */
 public class Graph
 {
-    private HashMap<Integer, Node> nodeHashMap;
+    private HashMap<String, Node> nodeHashMap;
     private HashMap<String, Edge> edgeHashMap;
     private boolean isBidirectional = false;
     public Graph()
@@ -27,7 +27,7 @@ public class Graph
         isBidirectional = true;
     }
 
-    public void createNode(int id)
+    public void createNode(String id)
     {
         if(!nodeHashMap.containsKey(id))
         {
@@ -75,7 +75,7 @@ public class Graph
         edge.setDestination(destination);
         edge.setWeight(weight);
         edge.setIsSettled(false);
-        String edgeId = ""+source.getId()+""+destination.getId();
+        String edgeId = source.getId()+""+destination.getId();
         edge.setId(Integer.parseInt(edgeId));
         edgeHashMap.put(edgeId, edge);
     }
@@ -120,9 +120,9 @@ public class Graph
         return shortestPath;
     }
 
-    public ArrayList<Integer> printShortestPath(ArrayList<Node> shortestPath)
+    public ArrayList<String> printShortestPath(ArrayList<Node> shortestPath)
     {
-        ArrayList<Integer> path = new ArrayList<>();
+        ArrayList<String> path = new ArrayList<>();
         for(Node node : shortestPath)
         {
             path.add(node.getId());

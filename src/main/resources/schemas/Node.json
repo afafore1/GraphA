@@ -6,12 +6,12 @@
     "id":
     {
       "description": "Node Id",
-      "type": "integer"
+      "type": "string"
     },
-    "word":
+    "determiner":
     {
       "description": "What this node represents",
-      "type": "string"
+      "type": "Node"
     },
     "xPosition":
     {

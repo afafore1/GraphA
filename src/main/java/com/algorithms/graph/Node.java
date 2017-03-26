@@ -21,7 +21,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "id",
-    "word",
+    "determiner",
     "xPosition",
     "yPosition",
     "visited",
@@ -37,14 +37,14 @@ public class Node {
      */
     @JsonProperty("id")
     @JsonPropertyDescription("Node Id")
-    private Integer id;
+    private String id;
     /**
      * What this node represents
      * 
      */
-    @JsonProperty("word")
+    @JsonProperty("determiner")
     @JsonPropertyDescription("What this node represents")
-    private String word;
+    private Object determiner;
     /**
      * x coordinate
      * 
@@ -87,7 +87,7 @@ public class Node {
      * 
      */
     @JsonProperty("id")
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
@@ -97,11 +97,11 @@ public class Node {
      * 
      */
     @JsonProperty("id")
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Node withId(Integer id) {
+    public Node withId(String id) {
         this.id = id;
         return this;
     }
@@ -110,22 +110,22 @@ public class Node {
      * What this node represents
      * 
      */
-    @JsonProperty("word")
-    public String getWord() {
-        return word;
+    @JsonProperty("determiner")
+    public Object getDeterminer() {
+        return determiner;
     }
 
     /**
      * What this node represents
      * 
      */
-    @JsonProperty("word")
-    public void setWord(String word) {
-        this.word = word;
+    @JsonProperty("determiner")
+    public void setDeterminer(Object determiner) {
+        this.determiner = determiner;
     }
 
-    public Node withWord(String word) {
-        this.word = word;
+    public Node withDeterminer(Object determiner) {
+        this.determiner = determiner;
         return this;
     }
 
@@ -249,10 +249,10 @@ public class Node {
         return ToStringBuilder.reflectionToString(this);
     }
 
-//    @Override
-//    public int hashCode() {
-//        return new HashCodeBuilder().append(id).append(word).append(xPosition).append(yPosition).append(visited).append(neighbors).append(parent).toHashCode();
-//    }
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(id).append(determiner).append(xPosition).append(yPosition).append(visited).append(neighbors).append(parent).toHashCode();
+    }
 
     @Override
     public boolean equals(Object other) {
@@ -263,7 +263,7 @@ public class Node {
             return false;
         }
         Node rhs = ((Node) other);
-        return new EqualsBuilder().append(id, rhs.id).append(word, rhs.word).append(xPosition, rhs.xPosition).append(yPosition, rhs.yPosition).append(visited, rhs.visited).append(neighbors, rhs.neighbors).append(parent, rhs.parent).isEquals();
+        return new EqualsBuilder().append(id, rhs.id).append(determiner, rhs.determiner).append(xPosition, rhs.xPosition).append(yPosition, rhs.yPosition).append(visited, rhs.visited).append(neighbors, rhs.neighbors).append(parent, rhs.parent).isEquals();
     }
 
 }

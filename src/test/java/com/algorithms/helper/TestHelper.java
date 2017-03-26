@@ -28,7 +28,7 @@ public class TestHelper {
     {
         for(int i = 0; i < numberOfNodes; i++)
         {
-            graph.createNode(i);
+            graph.createNode(String.valueOf(i));
         }
     }
 
