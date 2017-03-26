@@ -22,7 +22,6 @@ public class Parser {
         JSON_FILES = getJsonFiles(Parser.class, SCHEMA_DIR);
     }
 
-
     private static HashSet<File> getJsonFiles(Class<?> passedInClass, String schemaDir)
     {
         HashSet<File> jsonFiles = new HashSet<>();

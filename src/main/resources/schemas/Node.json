@@ -8,6 +8,11 @@
       "description": "Node Id",
       "type": "integer"
     },
+    "word":
+    {
+      "description": "What this node represents",
+      "type": "string"
+    },
     "xPosition":
     {
       "description": "x coordinate",

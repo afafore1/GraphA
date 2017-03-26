@@ -21,6 +21,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "id",
+    "word",
     "xPosition",
     "yPosition",
     "visited",
@@ -37,6 +38,13 @@ public class Node {
     @JsonProperty("id")
     @JsonPropertyDescription("Node Id")
     private Integer id;
+    /**
+     * What this node represents
+     * 
+     */
+    @JsonProperty("word")
+    @JsonPropertyDescription("What this node represents")
+    private String word;
     /**
      * x coordinate
      * 
@@ -95,6 +103,29 @@ public class Node {
 
     public Node withId(Integer id) {
         this.id = id;
+        return this;
+    }
+
+    /**
+     * What this node represents
+     * 
+     */
+    @JsonProperty("word")
+    public String getWord() {
+        return word;
+    }
+
+    /**
+     * What this node represents
+     * 
+     */
+    @JsonProperty("word")
+    public void setWord(String word) {
+        this.word = word;
+    }
+
+    public Node withWord(String word) {
+        this.word = word;
         return this;
     }
 
@@ -220,7 +251,7 @@ public class Node {
 
 //    @Override
 //    public int hashCode() {
-//        return new HashCodeBuilder().append(id).append(xPosition).append(yPosition).append(visited).append(neighbors).append(parent).toHashCode();
+//        return new HashCodeBuilder().append(id).append(word).append(xPosition).append(yPosition).append(visited).append(neighbors).append(parent).toHashCode();
 //    }
 
     @Override
@@ -232,7 +263,7 @@ public class Node {
             return false;
         }
         Node rhs = ((Node) other);
-        return new EqualsBuilder().append(id, rhs.id).append(xPosition, rhs.xPosition).append(yPosition, rhs.yPosition).append(visited, rhs.visited).append(neighbors, rhs.neighbors).append(parent, rhs.parent).isEquals();
+        return new EqualsBuilder().append(id, rhs.id).append(word, rhs.word).append(xPosition, rhs.xPosition).append(yPosition, rhs.yPosition).append(visited, rhs.visited).append(neighbors, rhs.neighbors).append(parent, rhs.parent).isEquals();
     }
 
 }
