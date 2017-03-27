@@ -27,6 +27,20 @@ public class Graph
         isBidirectional = true;
     }
 
+    public void createNode(int nodeId, int xPos, int yPos)
+    {
+        if(!nodeHashMap.containsKey(nodeId))
+        {
+            Node node = new Node();
+            node.setId(nodeId);
+            node.setVisited(false);
+            node.setXPosition(xPos);
+            node.setYPosition(yPos);
+            node.setParent(null);
+            nodeHashMap.put(nodeId, node);
+        }
+    }
+    
     public void createNode(int id)
     {
         if(!nodeHashMap.containsKey(id))

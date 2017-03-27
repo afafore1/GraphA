@@ -23,6 +23,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
     "id",
     "xPosition",
     "yPosition",
+    "isSelected",
     "visited",
     "neighbors",
     "parent"
@@ -51,6 +52,13 @@ public class Node {
     @JsonProperty("yPosition")
     @JsonPropertyDescription("y coordinate")
     private Integer yPosition;
+    /**
+     * for gui when this node has been selected
+     * 
+     */
+    @JsonProperty("isSelected")
+    @JsonPropertyDescription("for gui when this node has been selected")
+    private Boolean isSelected;
     /**
      * Verify if this node has been visited
      * 
@@ -145,6 +153,29 @@ public class Node {
     }
 
     /**
+     * for gui when this node has been selected
+     * 
+     */
+    @JsonProperty("isSelected")
+    public Boolean getIsSelected() {
+        return isSelected;
+    }
+
+    /**
+     * for gui when this node has been selected
+     * 
+     */
+    @JsonProperty("isSelected")
+    public void setIsSelected(Boolean isSelected) {
+        this.isSelected = isSelected;
+    }
+
+    public Node withIsSelected(Boolean isSelected) {
+        this.isSelected = isSelected;
+        return this;
+    }
+
+    /**
      * Verify if this node has been visited
      * 
      */
@@ -220,7 +251,7 @@ public class Node {
 
 //    @Override
 //    public int hashCode() {
-//        return new HashCodeBuilder().append(id).append(xPosition).append(yPosition).append(visited).append(neighbors).append(parent).toHashCode();
+//        return new HashCodeBuilder().append(id).append(xPosition).append(yPosition).append(isSelected).append(visited).append(neighbors).append(parent).toHashCode();
 //    }
 
     @Override
@@ -232,7 +263,7 @@ public class Node {
             return false;
         }
         Node rhs = ((Node) other);
-        return new EqualsBuilder().append(id, rhs.id).append(xPosition, rhs.xPosition).append(yPosition, rhs.yPosition).append(visited, rhs.visited).append(neighbors, rhs.neighbors).append(parent, rhs.parent).isEquals();
+        return new EqualsBuilder().append(id, rhs.id).append(xPosition, rhs.xPosition).append(yPosition, rhs.yPosition).append(isSelected, rhs.isSelected).append(visited, rhs.visited).append(neighbors, rhs.neighbors).append(parent, rhs.parent).isEquals();
     }
 
 }

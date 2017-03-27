@@ -18,6 +18,11 @@
       "description": "y coordinate",
       "type": "integer"
     },
+    "isSelected":
+    {
+      "description": "for gui when this node has been selected",
+      "type": "boolean"
+    },
     "visited":
     {
       "description": "Verify if this node has been visited",
